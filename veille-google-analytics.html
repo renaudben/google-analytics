@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Analytics - Présentation du Groupe F</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4285F4;
+            --primary-dark: #3367D6;
+            --secondary: #34A853;
+            --accent: #EA4335;
+            --yellow: #FBBC05;
+            --light: #f8f9fa;
+            --dark: #202124;
+            --gray: #5f6368;
+            --gray-light: #e8eaed;
+        }
+        
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+            margin: 0;
+            padding: 0;
+            font-weight: 400;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 8px 24px rgba(66, 133, 244, 0.2);
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::after {
+            content: "";
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            width: 200px;
+            height: 200px;
+            background-color: rgba(255,255,255,0.05);
+            border-radius: 50%;
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-weight: 300;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        h2 {
+            color: var(--primary);
+            border-bottom: 2px solid var(--gray-light);
+            padding-bottom: 12px;
+            margin-top: 50px;
+            font-weight: 600;
+            font-size: 1.8rem;
+            letter-spacing: -0.3px;
+        }
+        
+        h3 {
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 1.3rem;
+            margin-top: 0;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid var(--gray-light);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 35px 0;
+        }
+        
+        .pros-cons {
+            display: flex;
+            gap: 25px;
+            margin: 25px 0;
+        }
+        
+        .pros, .cons {
+            flex: 1;
+            padding: 20px;
+            border-radius: 12px;
+        }
+        
+        .pros {
+            background-color: rgba(66, 133, 244, 0.05);
+            border-left: 4px solid var(--primary);
+        }
+        
+        .cons {
+            background-color: rgba(234, 67, 53, 0.05);
+            border-left: 4px solid var(--accent);
+        }
+        
+        ul, ol {
+            padding-left: 24px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+            line-height: 1.7;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            margin: 15px 5px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);
+        }
+        
+        .tabs {
+            display: flex;
+            margin-bottom: -1px;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+        
+        .tab {
+            padding: 12px 20px;
+            background: var(--gray-light);
+            border: none;
+            border-radius: 8px 8px 0 0;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+        
+        .tab:hover {
+            background: #d3d6da;
+        }
+        
+        .tab.active {
+            background: white;
+            color: var(--primary);
+            border: 1px solid var(--gray-light);
+            border-bottom: 1px solid white;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 25px;
+            background: white;
+            border-radius: 0 8px 8px 8px;
+            border: 1px solid var(--gray-light);
+            border-top: none;
+            animation: fadeIn 0.4s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 80px;
+            padding: 30px;
+            color: var(--gray);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--gray-light);
+        }
+        
+        .highlight {
+            background-color: rgba(66, 133, 244, 0.1);
+            padding: 3px 8px;
+            border-radius: 4px;
+            color: var(--primary);
+            font-weight: 500;
+        }
+        
+        .code {
+            font-family: 'Roboto Mono', monospace;
+            background-color: #f5f7fa;
+            padding: 18px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 0.85rem;
+            border: 1px solid var(--gray-light);
+            margin: 15px 0;
+            line-height: 1.6;
+        }
+        
+        .ga4-feature {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            background: rgba(251, 188, 5, 0.08);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid var(--yellow);
+        }
+        
+        .ga4-feature-icon {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            color: var(--yellow);
+        }
+        
+        .ga4-feature-content h4 {
+            margin-top: 0;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+        }
+        
+        .comparison-table th, .comparison-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--gray-light);
+        }
+        
+        .comparison-table th {
+            background-color: var(--primary);
+            color: white;
+            font-weight: 500;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background-color: rgba(66, 133, 244, 0.03);
+        }
+        
+        .comparison-table tr:hover {
+            background-color: rgba(66, 133, 244, 0.08);
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .badge-new {
+            background-color: var(--yellow);
+            color: var(--dark);
+        }
+        
+        .badge-improved {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .pros-cons {
+                flex-direction: column;
+            }
+            
+            header {
+                padding: 40px 20px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Google Analytics</h1>
+            <p class="subtitle">L'outil indispensable pour analyser le trafic de votre site web</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="card">
+            <h2>Introduction</h2>
+            <p>Google Analytics est un service gratuit d'analyse d'audience d'un site web ou d'applications créé par Google. Il permet de mesurer et d'analyser le trafic sur un site, comprendre le comportement des visiteurs et optimiser les performances.</p>
+        </div>
+        
+        <h2>1. Pourquoi et comment utiliser Google Analytics ?</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Pourquoi l'utiliser ?</h3>
+                <ul>
+                    <li>Comprendre votre audience (origine géographique, appareils utilisés, etc.)</li>
+                    <li>Analyser le comportement des visiteurs (pages vues, durée des sessions, etc.)</li>
+                    <li>Mesurer l'efficacité de vos campagnes marketing</li>
+                    <li>Identifier les points d'amélioration pour votre site</li>
+                    <li>Prendre des décisions basées sur des données concrètes</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h3>Comment l'utiliser ?</h3>
+                <ol>
+                    <li>Créer un compte Google Analytics</li>
+                    <li>Ajouter un site web à suivre</li>
+                    <li>Installer le code de suivi sur votre site</li>
+                    <li>Configurer les objectifs et les tableaux de bord</li>
+                    <li>Analyser les rapports et prendre des décisions</li>
+                </ol>
+            </div>
+        </div>
+        
+        <h2>2. Forces et limites de Google Analytics</h2>
+        <div class="card">
+            <div class="pros-cons">
+                <div class="pros">
+                    <h3>Points forts</h3>
+                    <ul>
+                        <li><strong>Gratuit</strong> dans sa version de base</li>
+                        <li><strong>Intégration facile</strong> avec les autres outils Google</li>
+                        <li><strong>Données en temps réel</strong> disponibles</li>
+                        <li><strong>Personnalisation</strong> des rapports et tableaux de bord</li>
+                        <li><strong>Large communauté</strong> et nombreuses ressources disponibles</li>
+                    </ul>
+                </div>
+                
+                <div class="cons">
+                    <h3>Limites</h3>
+                    <ul>
+                        <li><strong>Courbe d'apprentissage</strong> assez raide pour les débutants</li>
+                        <li><strong>Respect de la vie privée</strong> parfois problématique</li>
+                        <li><strong>Échantillonnage des données</strong> sur les gros volumes</li>
+                        <li><strong>Données pas 100% exactes</strong> (bloqueurs, cookies, etc.)</li>
+                        <li><strong>Version gratuite</strong> limitée en fonctionnalités</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <h2>3. Domaines dans lesquels on peut tirer profit au maximum de cet outil</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>E-commerce</h3>
+                <p>Suivi des conversions, analyse du parcours d'achat, optimisation du tunnel de vente, mesure du ROI des campagnes.</p>
+            </div>
+            
+            <div class="card">
+                <h3>Marketing digital</h3>
+                <p>Analyse des canaux d'acquisition, mesure de l'efficacité des campagnes, optimisation du budget marketing.</p>
+            </div>
+            
+            <div class="card">
+                <h3>UX/Design</h3>
+                <p>Identification des points de friction, analyse du comportement utilisateur, tests A/B.</p>
+            </div>
+            
+            <div class="card">
+                <h3>Contenu éditorial</h3>
+                <p>Analyse des performances des articles, temps de lecture, taux de rebond, suivi des abonnés.</p>
+            </div>
+        </div>
+        
+        <h2>4. Comment l'implémenter dans un projet ?</h2>
+        <div class="card">
+            <div class="tabs">
+                <button class="tab active" onclick="openTab(event, 'tab1')">Méthode standard</button>
+                <!--<button class="tab" onclick="openTab(event, 'tab2')">Avec Google Tag Manager</button>-->
+                <button class="tab" onclick="openTab(event, 'tab3')">Pour une application</button>
+            </div>
+            
+            <div id="tab1" class="tab-content active">
+                <h3>Méthode standard</h3>
+                <ol>
+                    <li>Créez un compte Google Analytics</li>
+                    <li>Ajoutez une nouvelle propriété (votre site web)</li>
+                    <li>Récupérez le code de suivi (balise Global Site Tag)</li>
+                    <li>Ajoutez ce code juste avant la balise <code>&lt;/head&gt;</code> de toutes vos pages</li>
+                    <li>Vérifiez que le suivi fonctionne dans l'interface "Temps réel"</li>
+                </ol>
+                <div class="code">
+                    &lt;!-- Global site tag (gtag.js) - Google Analytics --&gt;<br>
+                    &lt;script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"&gt;&lt;/script&gt;<br>
+                    &lt;script&gt;<br>
+                    &nbsp;&nbsp;window.dataLayer = window.dataLayer || [];<br>
+                    &nbsp;&nbsp;function gtag(){dataLayer.push(arguments);}<br>
+                    &nbsp;&nbsp;gtag('js', new Date());<br>
+                    <br>
+                    &nbsp;&nbsp;gtag('config', 'GA_MEASUREMENT_ID');<br>
+                    &lt;/script&gt;
+                </div>
+            </div>
+            
+            <!--<div id="tab2" class="tab-content">
+                <h3>Avec Google Tag Manager</h3>
+                <ol>
+                    <li>Créez un compte Google Tag Manager</li>
+                    <li>Ajoutez les balises GTM à votre site</li>
+                    <li>Créez une nouvelle balise de type Google Analytics</li>
+                    <li>Configurez la balise avec votre ID de suivi</li>
+                    <li>Publiez le container</li>
+                    <li>Testez avec l'aperçu avant publication</li>
+                </ol>
+                <p>GTM offre plus de flexibilité pour ajouter d'autres tags sans modifier le code.</p>
+            </div>-->
+            
+            <div id="tab3" class="tab-content">
+                <h3>Pour une application mobile</h3>
+                <ol>
+                    <li>Créez une nouvelle propriété "Application" dans GA</li>
+                    <li>Pour Android : utilisez Firebase Analytics</li>
+                    <li>Pour iOS : utilisez le SDK Google Analytics pour iOS</li>
+                    <li>Configurez les événements spécifiques à suivre</li>
+                    <li>Testez avant la mise en production</li>
+                </ol>
+                <p>Google recommande maintenant d'utiliser Firebase pour le suivi des applications.</p>
+            </div>
+        </div>
+        
+        <h2>5. Outils concurrents</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Adobe Analytics</h3>
+                <p>Solution professionnelle plus complète mais payante et complexe.</p>
+            </div>
+            
+            <div class="card">
+                <h3>Matomo (ex-Piwik)</h3>
+                <p>Alternative open-source qui respecte la vie privée, peut être auto-hébergée.</p>
+            </div>
+            
+            <div class="card">
+                <h3>Hotjar</h3>
+                <p>Complémentaire avec cartes de chaleur et enregistrements de sessions.</p>
+            </div>
+            
+            <div class="card">
+                <h3>Mixpanel</h3>
+                <p>Spécialisé dans l'analyse du comportement utilisateur, orienté produits.</p>
+            </div>
+            
+            <div class="card">
+                <h3>Microsoft Clarity</h3>
+                <p>Outil gratuit de Microsoft avec cartes de chaleur et enregistrements.</p>
+            </div>
+            
+            <div class="card">
+                <h3>Simple Analytics</h3>
+                <p>Alternative respectueuse de la vie privée, interface simplifiée.</p>
+            </div>
+        </div>
+        
+        <h2>6. Perspectives et évolutions (Google Analytics 4)</h2>
+        <div class="card">
+            <h3>La révolution GA4</h3>
+            <p>Google Analytics 4 (GA4) représente une refonte complète avec plusieurs innovations majeures :</p>
+            
+            <div class="ga4-feature">
+                <div class="ga4-feature-icon">🔗</div>
+                <div class="ga4-feature-content">
+                    <h4>Approche cross-platform</h4>
+                    <p>Un seul et même suivi pour votre site web et votre application mobile avec une vue unifiée de l'utilisateur.</p>
+                </div>
+            </div>
+            
+            <div class="ga4-feature">
+                <div class="ga4-feature-icon">📊</div>
+                <div class="ga4-feature-content">
+                    <h4>Modèle basé sur les événements</h4>
+                    <p>Finie la logique des sessions, GA4 utilise un modèle flexible basé sur les événements qui permet de mieux comprendre le parcours utilisateur.</p>
+                </div>
+            </div>
+            
+            <div class="ga4-feature">
+                <div class="ga4-feature-icon">🤖</div>
+                <div class="ga4-feature-content">
+                    <h4>IA intégrée</h4>
+                    <p>Détection automatique des tendances, prédictions de comportement et alertes intelligentes pour identifier les opportunités.</p>
+                </div>
+            </div>
+            
+            <h3 style="margin-top: 30px;">Migration vers GA4</h3>
+            <p>Google a annoncé l'arrêt progressif d'Universal Analytics :</p>
+            <ul>
+                <li><strong>1er juillet 2023</strong> : Arrêt du traitement des nouvelles données dans les propriétés UA standard</li>
+                <li><strong>1er juillet 2024</strong> : Arrêt complet pour les propriétés UA 360</li>
+            </ul>
+            
+            <div style="padding: 20px; background: rgba(251, 188, 5, 0.1); border-radius: 8px; margin-top: 20px; border-left: 4px solid var(--yellow);">
+                <h4 style="margin-top: 0;">Recommandation importante</h4>
+                <p>Créez une propriété GA4 dès maintenant et exécutez les deux versions en parallèle pour préserver vos données historiques et vous familiariser avec la nouvelle interface.</p>
+            </div>
+        </div>
+        
+        <h2>Ressources pour apprendre</h2>
+        <div class="card">
+            <h3>Tutoriels</h3>
+            <ul>
+                <li><a href="https://support.google.com/analytics/answer/9304153" target="_blank">Guide officiel de Google (bases)</a></li>
+                <li><a href="https://www.youtube.com/playlist?list=PLqpe5QDYQQe8fqJY4xrq7ZR5xZ4JzZ4Z4" target="_blank">Tutoriel vidéo complet (YouTube)</a></li>
+                <li><a href="https://www.lewagon.com/fr/blog/tutoriel-google-analytics" target="_blank">Tutoriel Le Wagon (bien détaillé)</a></li>
+                <li><a href="https://www.atinternet.com/fr/glossary/google-analytics/" target="_blank">Lexique et bonnes pratiques</a></li>
+                <li><a href="https://www.ga-premium.com/" target="_blank">Blog GA Premium (avancé)</a></li>
+            </ul>
+            
+            <h3>Formations certifiantes</h3>
+            <ul>
+                <li><a href="https://skillshop.exceedlms.com/student/catalog/list?category_ids=667-google-analytics" target="_blank">Certification Google Analytics</a> (gratuite)</li>
+                <li><a href="https://www.udemy.com/course/google-analytics-formation-complete/" target="_blank">Formation Udemy complète</a> (payante)</li>
+                <li><a href="https://openclassrooms.com/fr/courses/5481081-utilisez-google-analytics-pour-mesurer-votre-audience" target="_blank">Cours OpenClassrooms</a></li>
+            </ul>
+        </div>
+        
+        <!--<div class="card" style="text-align: center; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; padding: 40px 20px; border: none;">
+            <h2 style="color: white; border-bottom: 2px solid rgba(255,255,255,0.3); padding-bottom: 15px; display: inline-block;">Prêt à maîtriser Google Analytics ?</h2>
+            <p style="font-size: 1.1rem; max-width: 700px; margin: 20px auto; opacity: 0.9;">Commencez dès maintenant à collecter des données précieuses pour optimiser votre site ou application.</p>
+            <a href="https://analytics.google.com/" class="btn" style="background: white; color: var(--primary);">Accéder à Google Analytics</a>
+        </div>-->
+    </div>
+    
+    <footer>
+        <p>Présentation rédigée avec ❤️ par le Groupe F</p>
+    </footer>
+    
+    <script>
+        function openTab(evt, tabName) {
+            // Masquer tous les contenus d'onglet
+            const tabContents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove("active");
+            }
+            
+            // Désactiver tous les onglets
+            const tabs = document.getElementsByClassName("tab");
+            for (let i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove("active");
+            }
+            
+            // Afficher l'onglet actuel
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+        
+        // Animation au chargement
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'all 0.6s ease-out';
+                
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 150 * index);
+            });
+        });
+        
+        // Navigation au clavier
+        document.addEventListener('keydown', function(e) {
+            const headings = document.querySelectorAll('h2');
+            const currentScroll = window.scrollY;
+            let target = null;
+            
+            if (e.key === 'ArrowDown') {
+                for (let i = 0; i < headings.length; i++) {
+                    if (headings[i].offsetTop > currentScroll + 100) {
+                        target = headings[i];
+                        break;
+                    }
+                }
+            } else if (e.key === 'ArrowUp') {
+                for (let i = headings.length - 1; i >= 0; i--) {
+                    if (headings[i].offsetTop < currentScroll - 100) {
+                        target = headings[i];
+                        break;
+                    }
+                }
+            }
+            
+            if (target) {
+                e.preventDefault();
+                window.scrollTo({
+                    top: target.offsetTop - 20,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    </script>
+</body>
+</html>
